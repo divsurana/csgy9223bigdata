@@ -93,3 +93,27 @@ QUEENS	          1011002
 STATEN ISLAND	243790
 
 further columns to be summarized -
+For each column in the data set, you should provide a script that assigns to each value:
+1) a base type (i.e., INT/LONG, DECIMAL, TEXT, maybe DATETIME)
+2) a semantic data type (e.g., phone, address, city, state, zipcode) -- here, your script could use,
+e.g., a regular expression to identify phone numbers, a dictionary to check whether a given
+string is a city.
+3) a label from the set [NULL -> missing or unknown information, VALID -> valid value from the
+intended domain of the column, INVALID/OUTLIER -> suspicious or invalid values]
+
+Note that some columns may have values of multiple types (e.g., telephone, email).
+further tasks - 1)Your script should output for each value its base type, semantic
+type and whether the value is NULL, VALID, or INVALID.
+
+(999)999-99999 TEXT phone NULL
+
+(212)234-5678 TEXT  phone VALID
+
+Now considering for a single column report_date , report date is the 6th column in the dataset 
+
+2)Finding if the latitude and longitude is within the range 
+
+3)find the number of invalid values for each column 
+
+4)generating timeseries for report_date 
+

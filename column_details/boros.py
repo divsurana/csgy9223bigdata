@@ -10,13 +10,13 @@ from spark import SparkContext
 
 if __name__ == "__main__":
     sc = SparkContext()
-    lines = sc.textFile('crime.csv')
+    lines = sc.textFile('crimenew.csv')
     header = lines.first()
     lines = lines.filter(lambda row: row != header)
     lines = lines.mapPartitions(lambda x: reader(x))
     counts = lines.map(lambda x: (x[13]))
     boros=['QUEENS','BROOKLYN','MANHATTAN','BRONX','STATEN ISLAND']
-    #counts = counts.map(lambda x: (x, 1))
+    counts = counts.map(lambda x: (x, 1))
     counts = counts.map(lambda x: (x[0], boro_check_type(x[0]), boro_check_semantic(x[0]), boro_check_null(x[0])))
 
     def boro_check_null(borostring):
@@ -54,4 +54,4 @@ if __name__ == "__main__":
 
     counts = counts.map(lambda x: "%s\t%s\t%s\t%s" % (x[0], x[1], x[2], x[3]))
 
-    counts.saveAsTextFile("report_date_details.out")
+    counts.saveAsTextFile("boro_details.out")

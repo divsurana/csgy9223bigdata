@@ -92,6 +92,23 @@ BRONX	          1103514
 QUEENS	          1011002
 STATEN ISLAND	243790
 
+Time series analysis in python pandas - 
+On running time series analysis in python pandas we were unable to initially load the data as the csv file is 1.3 gb .
+we got an initial error saying - Specify dtype option on import or set low_memory=False
+1)This meant that we need to remove the memory restrictions by providing low_memory=False
+but this method is not time efficient . What it does it sets the memory limit to false
+2) Instead setting dtype to several values helps in saving time as pandas does not have to specifically scan the entire row to intially find the datatype.
+
+Therefore we wwent with dtype={"HADEVELOPT": str } as an additional parameter in the read_csv() function
+
+On doing this we still got a warning of #DtypeWarning: Columns (17) have mixed types. Specify dtype option on import or set low_memory=False.
+
+Hence we added column 17 to the function ie- data = pd.read_csv('/home/karan/crime.csv', dtype={"HADEVELOPT": str ,"PREM_TYP_DESC":str})
+
+This enabled us to retreive the data but the time required to retreive it was long ( as the dataset is large)
+
+
+
 further columns to be summarized -
 For each column in the data set, you should provide a script that assigns to each value:
 1) a base type (i.e., INT/LONG, DECIMAL, TEXT, maybe DATETIME)

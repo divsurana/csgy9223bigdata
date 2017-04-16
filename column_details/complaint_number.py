@@ -5,25 +5,27 @@ from operator import add
 from csv import reader
 import datetime
 import re
-from spark import SparkContext
+from pyspark import SparkContext
 
 
 if __name__ == "__main__":
     sc = SparkContext()
-    lines = sc.textFile("crimes")
+    lines = sc.textFile("crimes.csv")
     header = lines.first()
-    lines = lines.filter(lambda row: row != header)
+    #lines = lines.take(500)
+    #lines=sc.parallelize(lines)
+    lines=lines.filter(lambda row: row != header)
     lines = lines.mapPartitions(lambda x: reader(x))
     counts = lines.map(lambda x: (x[0]))
     #counts = counts.map(lambda x: (x, 1))
-    counts = counts.map(lambda x: (x[0], complaint_check_type(x[0]), complaint_check_semantic(x[0]), complaint_check_null(x[0])))
+    counts = counts.map(lambda x: (x, complaint_check_type(x), complaint_check_semantic(x), complaint_check_null(x)))
 
     def complaint_check_null(complaint_string):
-        if (complaint_string == ""):
+        if (complaint_string == ''):
             return 'NULL'
         else:
             try:
-                int(s)
+                int(complaint_string)
                 if (int(complaint_string)<1000000000 and int(complaint_string)>99999999):
                     return 'VALID'
                 else:
@@ -39,9 +41,9 @@ if __name__ == "__main__":
         else:
             try:
                 int(complaint_string)
-                return 'complaint_NUMBER'
+                return 'COMPLAINT_NUMBER'
             except:
-                return 'junk'
+                return 'JUNK'
 
 
 

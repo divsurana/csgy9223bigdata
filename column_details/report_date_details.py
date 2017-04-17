@@ -55,7 +55,7 @@ if __name__ == "__main__":
         try:
             mat = re.match('^\d{1,2}\/\d{1,2}\/\d{4}$', datestring)
             if mat is not None:
-                return 'pickup DATETIME'
+                return 'COMPLAINT DATETIME'
             else:
                 return " "
         except:

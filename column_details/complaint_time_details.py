@@ -50,7 +50,7 @@ if __name__ == "__main__":
 	
 	
 	def time_check_semantic_type(timestring):
-		if (timestring == ''):
+		if timestring == '':
 			return ''
 		try:
 			mat = re.match('(\d{1,2}):(\d{1,2}):(\d{1,2})', timestring)

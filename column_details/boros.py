@@ -20,9 +20,9 @@ if __name__ == "__main__":
     counts = counts.map(lambda x: (x[0], boro_check_type(x[0]), boro_check_semantic(x[0]), boro_check_null(x[0])))
 
     def boro_check_null(borostring):
-        if (borostring == ""):
+        if borostring == "":
             return 'NULL'
-        elif (boro_check_semantic(borostring)=='Borough'):
+        elif boro_check_semantic(borostring)=='Borough':
             return 'VALID'
         else:
             return 'INVALID'
@@ -30,11 +30,11 @@ if __name__ == "__main__":
 
     def boro_check_semantic(borostring):
         counted=0
-        if (borostring == ''):
+        if borostring == '':
             return ''
         else:
-            while (counted<5):
-                if (borostring==boros[counted]):
+            while counted<5:
+                if borostring==boros[counted]:
                     counted=5
                     return 'Borough'
                 else:

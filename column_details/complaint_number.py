@@ -21,12 +21,12 @@ if __name__ == "__main__":
     counts = counts.map(lambda x: (x, complaint_check_type(x), complaint_check_semantic(x), complaint_check_null(x)))
 
     def complaint_check_null(complaint_string):
-        if (complaint_string == ''):
+        if complaint_string == '':
             return 'NULL'
         else:
             try:
                 int(complaint_string)
-                if (int(complaint_string)<1000000000 and int(complaint_string)>99999999):
+                if int(complaint_string)<1000000000 and int(complaint_string)>99999999:
                     return 'VALID'
                 else:
                     return 'INVALID'
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
 
     def complaint_check_semantic(complaint_string):
-        if (complaint_string == ''):
+        if complaint_string == '':
             return ''
         else:
             try:

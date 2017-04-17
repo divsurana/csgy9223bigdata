@@ -7,7 +7,7 @@ rcParams['figure.figsize'] = 15, 6
 
 
 #chunksize = 5
-data = pd.read_csv('/home/karan/crimenew.csv', dtype={"HADEVELOPT": str ,"PREM_TYP_DESC":str,"PARKS_NM":str})
+data = pd.read_csv('/home/karan/crime.csv', dtype={"HADEVELOPT": str ,"PREM_TYP_DESC":str,"PARKS_NM":str})
 #DtypeWarning: Columns (17) have mixed types. Specify dtype option on import or set low_memory=False.
 #full_data = pd.concat(data, ignore_index=True)
 

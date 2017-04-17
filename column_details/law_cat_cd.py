@@ -15,14 +15,14 @@ if __name__ == "__main__":
     #lines=sc.parallelize(lines)
     lines = lines.filter(lambda row: row != header)
     lines = lines.mapPartitions(lambda x: reader(x))
-    counts = lines.map(lambda x: (x[10]))
+    counts = lines.map(lambda x: (x[11]))
     counts = counts.map(lambda x: (x, 1))
     counts = counts.map(lambda x: (x[0], pd_check_type(x[0]), pd_check_semantic(x[0]), pd_check_null(x[0])))
 
     def pd_check_null(pdstring):
         if (pdstring == ""):
             return 'NULL'
-        elif (pdstring=='COMPLETED' or pdstring=='ATTEMPTED'):
+        elif (pdstring=='VIOLATION' or pdstring=='MISDEMEANOR' or pdstring=='FELONY'):
             return 'VALID'
         else:
             return 'INVALID'
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         if (pdstring == ''):
             return ''
         elif (pdstring=='COMPLETED' or pdstring=='ATTEMPTED'):
-            return 'CRIME_ATTEMPTED_COMPLETED'
+            return 'CRIME_LEVEL_CLASSIFICATION'
         else:
             return 'JUNK'
 
@@ -50,4 +50,4 @@ if __name__ == "__main__":
 
     counts = counts.map(lambda x: "%s\t%s\t%s\t%s" % (x[0], x[1], x[2], x[3]))
 
-    counts.saveAsTextFile("crime_completed_attempted.out")
+    counts.saveAsTextFile("crime_level_classifcation.out")

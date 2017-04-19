@@ -8,7 +8,7 @@ import re
 
 if __name__ == "__main__":
 	sc = SparkContext()
-	lines = sc.textFile('NYPD_Complaint_Data_Historic.csv')
+	lines = sc.textFile(sys.argv[1], 1)
 	header = lines.first()
 	lines = lines.filter(lambda row: row != header)
 	lines = lines.mapPartitions(lambda x: reader(x))

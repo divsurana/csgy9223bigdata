@@ -8,7 +8,7 @@ from csv import reader
 
 if __name__ == "__main__":
 	sc = SparkContext()
-	lines = sc.textFile('crime.csv')
+	lines = sc.textFile(sys.argv[1], 1)
 	header = lines.first()
 	lines = lines.filter(lambda row: row != header)
 	lines = lines.mapPartitions(lambda x: reader(x))

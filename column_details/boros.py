@@ -5,12 +5,12 @@ from operator import add
 from csv import reader
 import datetime
 import re
-from spark import SparkContext
+from pyspark import SparkContext
 
 
 if __name__ == "__main__":
     sc = SparkContext()
-    lines = sc.textFile('crimenew.csv')
+    lines = sc.textFile(sys.argv[1], 1)
     header = lines.first()
     lines = lines.filter(lambda row: row != header)
     lines = lines.mapPartitions(lambda x: reader(x))
@@ -55,3 +55,4 @@ if __name__ == "__main__":
     counts = counts.map(lambda x: "%s\t%s\t%s\t%s" % (x[0], x[1], x[2], x[3]))
 
     counts.saveAsTextFile("boro_details.out")
+

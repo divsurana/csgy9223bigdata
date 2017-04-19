@@ -7,7 +7,7 @@ from csv import reader
 
 if __name__ == "__main__":
 	sc = SparkContext()
-	lines = sc.textFile('crime.csv')
+	lines = sc.textFile(sys.argv[1], 1)
 	header = lines.first()
 	lines = lines.filter(lambda row: row != header)
 	lines = lines.mapPartitions(lambda x: reader(x))
@@ -17,4 +17,4 @@ if __name__ == "__main__":
 	count1 = count1.sortByKey(False)
 	
 	df = count1.map(lambda r: str(r[1]) + "\t" + str(r[0]))
-	df.saveAsTextFile("taskwc2.out")
+	df.saveAsTextFile("complaint_from_time.out")

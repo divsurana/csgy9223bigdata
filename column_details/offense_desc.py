@@ -9,7 +9,7 @@ from pyspark import SparkContext
 
 if __name__ == "__main__":
     sc = SparkContext()
-    lines = sc.textFile("crimes.csv")
+    lines = sc.textFile(sys.argv[1], 1)
     header = lines.first()
     #lines = lines.take(500)
     #lines=sc.parallelize(lines)

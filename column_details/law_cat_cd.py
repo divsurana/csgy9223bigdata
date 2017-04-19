@@ -9,7 +9,7 @@ from pyspark import SparkContext
 
 if __name__ == "__main__":
     sc = SparkContext()
-    lines = sc.textFile("crimes.csv")
+    lines = sc.textFile(sys.argv[1], 1)
     header = lines.first()
     #lines = lines.take(500)
     #lines=sc.parallelize(lines)
@@ -51,3 +51,4 @@ if __name__ == "__main__":
     counts = counts.map(lambda x: "%s\t%s\t%s\t%s" % (x[0], x[1], x[2], x[3]))
 
     counts.saveAsTextFile("crime_level_classifcation.out")
+

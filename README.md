@@ -1,6 +1,6 @@
-#BIG DATA ANALYTICS Spring 2017 Project
+# BIG DATA ANALYTICS Spring 2017 Project
 
-#Analysing the NYPD Crime data 
+# Analysing the NYPD Crime data 
 
 [Available here] (https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i)
 

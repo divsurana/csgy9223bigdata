@@ -11,11 +11,6 @@ data = pd.read_csv(sys.argv[1], dtype={"HADEVELOPT": str ,"PREM_TYP_DESC":str,"P
 #DtypeWarning: Columns (17) have mixed types. Specify dtype option on import or set low_memory=False.
 #full_data = pd.concat(data, ignore_index=True)
 
-print data.head()
-print '\n Data Types:'
-print data.dtypes
-print data.count()
-
 #plot count of all columns
 data.count().plot.bar()
 
@@ -40,7 +35,3 @@ boro = data.groupby('BORO_NM')
 boro.size().plot.bar()
 
 plt.show()
-
-
-
-

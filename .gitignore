@@ -2,3 +2,5 @@
 *.xml
 
 .idea/csgy9223bigdata.iml
+
+*.docx#

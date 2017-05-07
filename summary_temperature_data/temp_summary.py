@@ -25,6 +25,7 @@ if __name__ == "__main__":
         return z
     
     lines=lines.map(lambda x :(proc(x[5]),proc1(x[9],x[10])))
+    lines=lines.filter(lambda x:(x[1]>0))
     #retreiving date and temperature
     lines = lines.map(lambda x: "%s,%s" % (x[0], x[1]))
-    lines.saveAsTextFile("temperature.csv")
+    lines.saveAsTextFile("temp.csv")

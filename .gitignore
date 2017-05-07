@@ -4,3 +4,11 @@
 .idea/csgy9223bigdata.iml
 
 *.docx#
+
+NYPD_Complaint_Data_Historic.csv
+
+analysis/__init__.py
+
+analysis/TimeSeries/__init__.py
+
+analysis/TimeSeries/Graphs/__init__.py

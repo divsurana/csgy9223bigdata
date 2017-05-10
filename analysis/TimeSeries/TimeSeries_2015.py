@@ -60,6 +60,18 @@ layout = go.Layout(
 fig = go.Figure(data=data, layout=layout)
 py.image.save_as(fig, filename='No_of_crimes_per_month.png')
 
+avgmonth = go.Scatter(
+	x=df_month['MONTH'],
+	y=df_month['CMPLNT_NUM']/10,
+	name='Avg no of crimes per month'
+)
+
+data = [avgmonth]
+layout = go.Layout(
+	title='Avg no of crimes per month')
+fig = go.Figure(data=data, layout=layout)
+py.image.save_as(fig, filename='Avg_no_of_crimes_per_month.png')
+
 # visualize the number of crimes per monthly day
 df_day = pd.DataFrame(refined_df['CMPLNT_NUM'].groupby(refined_df['DAY']).sum().reset_index())
 day = go.Scatter(
